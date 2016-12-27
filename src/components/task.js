@@ -8,22 +8,21 @@ class Task extends React.Component {
         link: React.PropTypes.string,
     };
 
-    handleCheck(id,actions,e) {
+    handleCheck(id,e) {
         // 阻止原生链接跳转
         e.preventDefault();
 
-        actions.checked(id);
+        // this.props.actions.checked(id,e.target.checked);
     }
 
     render() {
-        console.log("task.....", this.props)
         const {todos,actions}=this.props;
         return (
             <div className='row-task'>
                 <Row type="flex" justify="space-around">
                     <Col span={2}>
                         <Checkbox className="task-checkbox" key={this.props.id} 
-                        onChange={this.handleCheck.bind(this,this.props.id,actions)}>
+                        onChange={this.handleCheck.bind(this,this.props.id)}>
 
                         </Checkbox>
                     </Col>

@@ -1,7 +1,6 @@
 /**
  * Created by SWSD on 2016-12-23.
  */
-import {LOAD_TASK, LOAD_TASK_SUCCESS, LOAD_TASK_ERROR} from '../actions/action';
 import data from '../api/data'
 import * as Types from '../redux/contant'
 // const initialState = {
@@ -10,7 +9,7 @@ import * as Types from '../redux/contant'
 //     taskList: [],
 // };
 
-const initialState =data;
+const initialState = data;
 
 export default function taskList(state = initialState, action) {
     switch (action.type) {
@@ -43,12 +42,20 @@ export default function taskList(state = initialState, action) {
         case Types.CHECK:
         {
             console.log("checked........")
-            return{
+            return {
                 ...state,
-                checkOne:!action.checkOne
+                checkOne: !action.checkOne,
+
             }
         }
-
+        case Types.SHOW:
+        {
+            console.log("types.show.........");
+            return {
+                ...state,
+                title: action.title
+            }
+        }
         default:
             return state;
     }

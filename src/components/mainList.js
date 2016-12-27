@@ -8,7 +8,7 @@ const MainList=(props)=>{
     const {todos,actions}=props;
     return (
         <div>
-            <TaskList todos={todos} action={actions}/>
+            <TaskList todos={todos} action={actions} {...props}/>
         </div>
     )
 };

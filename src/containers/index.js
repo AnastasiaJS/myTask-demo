@@ -15,7 +15,7 @@ function callback(key) {
 class Task extends React.Component {
 
     render() {
-        const {loadTask, fetchPosts, taskList, loading, error, push} = this.props;
+        
         return (
             <div className="tqr-box">
                 <Row className="tqr-top-box">
