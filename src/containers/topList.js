@@ -1,7 +1,7 @@
 
 import {connect} from 'react-redux'
 import {bindActionCreator} from 'redux'
-import loadTask from '../actions/index'
+import loadTask from '../actions/action'
 import topList from '../components/topList'
 
 // const mapStateToProps = (state) => ({

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Checkbox, Row, Col} from 'antd';
+const CheckboxGroup = Checkbox.Group;
 
 class Task extends React.Component {
     static propTypes = {
@@ -6,22 +8,39 @@ class Task extends React.Component {
         link: React.PropTypes.string,
     };
 
-    handleNavigate(key, e) {
+    handleCheck(id,actions,e) {
         // 阻止原生链接跳转
         e.preventDefault();
 
-        // 使用 react-router-redux 提供的方法跳转，以便更新对应的 store
-        this.props.push(`/detail/${key}`);
+        actions.checked(id);
     }
 
     render() {
-        console.log("task.....",this.props)
+        console.log("task.....", this.props)
+        const {todos,actions}=this.props;
         return (
-            <article className="task-item">
-                <input type="checkbox"  onClick={this.handleNavigate.bind(null, this.props.key)}/>
-                <span>{this.props.name}</span>
-                <span>{this.props.state}</span>
-            </article>
+            <div className='row-task'>
+                <Row type="flex" justify="space-around">
+                    <Col span={2}>
+                        <Checkbox className="task-checkbox" key={this.props.id} 
+                        onChange={this.handleCheck.bind(this,this.props.id,actions)}>
+
+                        </Checkbox>
+                    </Col>
+                    <Col span={16} >
+                        {this.props.name} ( {this.props.titleOne} )
+                    </Col>
+                    <Col span={6}>
+                        {this.props.state}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={22} offset={2}>
+                        {this.props.titleTwo}
+                    </Col>
+                </Row>
+            </div>
+
         );
     }
 }

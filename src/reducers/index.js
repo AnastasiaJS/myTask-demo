@@ -1,9 +1,9 @@
 /**
  * Created by SWSD on 2016-12-23.
  */
-import {LOAD_TASK, LOAD_TASK_SUCCESS, LOAD_TASK_ERROR} from '../actions/index';
+import {LOAD_TASK, LOAD_TASK_SUCCESS, LOAD_TASK_ERROR} from '../actions/action';
 import data from '../api/data'
-
+import * as Types from '../redux/contant'
 // const initialState = {
 //     loading: true,
 //     error: false,
@@ -14,7 +14,7 @@ const initialState =data;
 
 export default function taskList(state = initialState, action) {
     switch (action.type) {
-        case LOAD_TASK:
+        case Types.LOAD_TASK:
         {
             return {
                 ...state,
@@ -22,9 +22,8 @@ export default function taskList(state = initialState, action) {
                 error: false,
             };
         }
-        case LOAD_TASK_SUCCESS:
+        case Types.LOAD_TASK_SUCCESS:
         {
-            console.log(action);
             return {
                 ...state,
                 loading: false,
@@ -33,13 +32,21 @@ export default function taskList(state = initialState, action) {
             };
         }
 
-        case LOAD_TASK_ERROR:
+        case Types.LOAD_TASK_ERROR:
         {
             return {
                 ...state,
                 loading: false,
                 error: true,
             };
+        }
+        case Types.CHECK:
+        {
+            console.log("checked........")
+            return{
+                ...state,
+                checkOne:!action.checkOne
+            }
         }
 
         default:

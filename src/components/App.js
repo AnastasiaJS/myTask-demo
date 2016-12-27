@@ -17,7 +17,6 @@ class App extends Component {
 }
 
 export default  connect(state => {
-    console.log(state.reducer);
     return {
         todos: state.reducer
     };

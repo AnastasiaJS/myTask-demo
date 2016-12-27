@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import Task from './task'
-import {fetchPosts,loadTask,requireTask} from '../actions'
+import {fetchPosts,loadTask,requireTask} from '../actions/action'
 import configureStore from '../redux/configureStore';
 const store = configureStore();
 class TaskList extends React.Component {
@@ -19,13 +19,14 @@ class TaskList extends React.Component {
     componentDidMount() {
         // const {dispatch}=this.props;
         store.dispatch(fetchPosts);
-        // store.dispatch(requireTask);
-        console.log('componentDidMout>>>>>',this.props)
+        // console.log('componentDidMout>>>>>',this.props)
     }
+
+    
 
     render() {
         const { loading, error, taskList } = this.props.todos;
-        // const { loading, error, taskList } = store.getState().reducer;
+       
 
         if (error) {
             return <h2 className="message">Oops, something is wrong.</h2>;
@@ -38,9 +39,8 @@ class TaskList extends React.Component {
         return (
             <div>
                 {taskList.map(item => {
-                    return <Task {...item}  push={this.props.push}/>
+                    return <Task {...item} key={item.id} push={this.props.push} className="task-item"/>
                 })}
-                
             </div>
         );
     }
