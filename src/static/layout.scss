@@ -4,7 +4,9 @@
 }
 html,body{
   height:100%;
+  width:100%;
   overflow: hidden;
+
 }
 li{
   list-style: none;
@@ -15,18 +17,57 @@ li{
   width:100%;
   .tqr-top-box{
     width:100%;
-    height:150px;
-    background-image:url("title.png");
+    height:275px;
   }
   .tqr-main-box{
     height:200px;
-    border:solid 1px red;
   }
 }
-.task-item{
-  border-bottom: solid 1px #ddd;
-  vertical-align: middle;
-  &:hover{
-    background: lightblue;
+
+.gutter-left,.gutter-right{
+  height:678px;
+  position: relative;
+
+}
+.div-task-list,.div-follow-list,.div-browser-list,.div-job-list{
+  height:50%;
+  overflow-y: auto;
+  padding-left: 0.5em;
+  &>div{
+    height:4em;
+    color: #467287;
+    border-bottom: solid 1px #ddd;
   }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #87CEEB;
+    border-radius: 4px;
+    &:hover{
+      background: #4169E1;
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: #F4F4F4;
+  }
+}
+.div-myTask-top,.div-myFollow-top,.div-browser-top,.div-job-top{
+  background: #7789C0;
+  color: #fff;
+  height:3em;
+  line-height: 3em;
+  padding: 0.5em;
+}
+
+/*
+全选的样式======
+*/
+#doSomething{
+  position: absolute;
+  bottom: 0;
+  height:2em;
+  width:100%;
+  line-height: 2em;
 }

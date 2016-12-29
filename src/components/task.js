@@ -1,40 +1,47 @@
 import React from 'react';
 import {Checkbox, Row, Col} from 'antd';
-const CheckboxGroup = Checkbox.Group;
+
 
 class Task extends React.Component {
-    static propTypes = {
-        title: React.PropTypes.string,
-        link: React.PropTypes.string,
-    };
 
-    handleCheck(id,e) {
-        // 阻止原生链接跳转
-        e.preventDefault();
+    handleCheck(id, e) {
 
-        // this.props.actions.checked(id,e.target.checked);
+        this.props.actions.checked(id, e.target.checked);
+    }
+
+    showTask(id) {
+        const {todos, actions}=this.props;
+        actions.setCurrent(id, true);
     }
 
     render() {
-        const {todos,actions}=this.props;
+        const {todos, actions}=this.props;
         return (
-            <div className='row-task'>
+            <div className='row-task' style={this.props.id==todos.currentId?{background:"#FCF8E2"}:{}}>
                 <Row type="flex" justify="space-around">
                     <Col span={2}>
-                        <Checkbox className="task-checkbox" key={this.props.id} 
-                        onChange={this.handleCheck.bind(this,this.props.id)}>
+                        <div>
+                            <Checkbox  className="task-checkbox"
+                                       onChange={this.handleCheck.bind(this,this.props.id)}
+                                       checked={this.props.checked}
+                                       style={this.props.checked?{visibility:"visible"}:{}}
+                            >
 
-                        </Checkbox>
+                            </Checkbox>
+                        </div>
+
                     </Col>
-                    <Col span={16} >
-                        {this.props.name} ( {this.props.titleOne} )
+                    <Col className="task-name" span={16} onClick={this.showTask.bind(this,this.props.id)}>
+                        <span>
+                            {this.props.name} ( {this.props.titleOne} )
+                        </span>
                     </Col>
                     <Col span={6}>
                         {this.props.state}
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={22} offset={2}>
+                    <Col span={22} offset={2}  onClick={this.showTask.bind(this,this.props.id)}>
                         {this.props.titleTwo}
                     </Col>
                 </Row>

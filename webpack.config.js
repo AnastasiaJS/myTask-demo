@@ -21,6 +21,14 @@ module.exports = {
                 loader: 'style-loader!css-loader?sourceMap'
             },
             {
+                test: /\.(png|jpe?g|gif|svg)/,
+                loader: 'url',
+                query: {
+                    limit: 10240, // 10KB 以下使用 base64
+                    name: 'img/[name]-[hash:6].[ext]'
+                }
+            },
+            {
                 test: /\.scss$/,
                 loader: "style!css!sass?sourceMap"
             },

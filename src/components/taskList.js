@@ -2,10 +2,9 @@
  * Created by SWSD on 2016-12-26.
  */
 import React from 'react';
-import Task from './task'
-import {fetchPosts,loadTask,requireTask} from '../actions/action'
-import configureStore from '../redux/configureStore';
-const store = configureStore();
+import Task from './task';
+import {Icon} from 'antd';
+import  '../static/task.css'
 class TaskList extends React.Component {
     static propTypes = {
         loading: React.PropTypes.bool,
@@ -17,9 +16,8 @@ class TaskList extends React.Component {
 
 
     componentDidMount() {
-        // const {dispatch}=this.props;
-        store.dispatch(fetchPosts);
-        // console.log('componentDidMout>>>>>',this.props)
+        const {actions}=this.props;
+        actions.fetchPosts();
     }
 
     
@@ -29,17 +27,19 @@ class TaskList extends React.Component {
        
 
         if (error) {
-            return <h2 className="message">Oops, something is wrong.</h2>;
+            return <div className="message">Oops, something is wrong.</div>;
         }
 
         if (loading) {
-            return <h2 className="message">Loading...</h2>;
+            return <div className="message">Loading...</div>;
         }
-
         return (
-            <div>
-                {taskList.map(item => {
-                    return <Task {...item} key={item.id} push={this.props.push} className="task-item"/>
+            <div className="div-task-list">
+                {taskList.filter(item=>{
+                    return !item.done;
+                }).map(item => {
+                    console.log(...item);
+                    return <Task {...item} key={item.id} {...this.props}/>
                 })}
             </div>
         );

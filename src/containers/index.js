@@ -1,71 +1,97 @@
 import React from 'react'
-import MainList from './mainList'
-import TopList from './topList'
+import {Row, Col, Icon} from 'antd';
+import ShowTask from './../components/currentTask'
+import CheckAll from './../components/checkAll'
+import BrowserList from './../components/browserList'
+import JobList from './../components/jobList'
+import FollowList from './../components/followList'
+import TaskList from './../components/taskList'
 
-import {Collapse, Row, Col,Checkbox} from 'antd';
-const Panel = Collapse.Panel;
 
-function callback(key) {
-    console.log(key);
-}
+import '../static/layout.css';
 
-// const text = `
-//   <Icon type="calendar" />
-// `;
-class Task extends React.Component {
+class Index extends React.Component {
 
     render() {
-        
         return (
             <div className="tqr-box">
-                <Row className="tqr-top-box">
-                    <Col span={24}>
-                    </Col>
-                </Row>
+                <div className="tqr-top-box">
+                    <img src="/build/img/title-2cd72f.png" alt=""/>
+                </div>
                 <Row gutter={16} className="tqr-main-box">
                     <Col className="gutter-left" span={4}>
-                        <div className="gutter-box">
-                            <Collapse defaultActiveKey={['1']}>
-                                <Panel header="我的任务" key="1" className="panel-myTask">
-                                    <MainList {...this.props}/>
-                                </Panel>
-                                <Panel header="我的关注" key="2" className="panel-myFollow">
-                                    我的关注
-                                </Panel>
-                            </Collapse>
-                            <div id="doSomething">
-                                <Checkbox>全选</Checkbox>
-                                <span>审核</span>
-                                <span>退回</span>
+                        <div className="div-myTask">
+                            <div className="div-myTask-top">
+                                <Icon type="calendar" style={{fontSize:1.5+"rem",marginRight:1.5+"em"}}/>
+                                <span style={{
+                                fontWeight:900,
+                                fontSize:1.5+"rem",
+                                 marginRight:6+"rem",
+                                 lineHeight:1.5+"rem"
+                                }}>我的任务</span>
+                                <Icon type="plus-square-o"/>
+                                <Icon type="down"/>
                             </div>
+                            <TaskList {...this.props}/>
                         </div>
+                        <div className="div-myFollow">
+                            <div className="div-myFollow-top">
+                                <Icon type="star" style={{fontSize:1.5+"rem",marginRight:1.5+"em"}}/>
+                                <span style={{
+                                fontWeight:900,
+                                fontSize:1.5+"rem",
+                                marginRight:6+"rem",
+                                lineHeight:1.5+"rem"
+                                }}>我的关注</span>
+                            </div>
+                            <FollowList {...this.props}/>
+                        </div>
+
+                        <CheckAll {...this.props}/>
                     </Col>
                     <Col className="gutter-row" span={16}>
                         <div className="gutter-box">
                             <Row gutter={16}>
                                 <Col span={4}>采购合同</Col>
-                                <Col span={20}>正在执行</Col>
+                                <Col span={20}>
+                                    正在执行
+                                    <ShowTask {...this.props}/>
+                                </Col>
                             </Row>
                         </div>
                     </Col>
                     <Col className="gutter-right" span={4}>
-                        <div className="gutter-box">
-                            <Collapse defaultActiveKey={['1']}>
-                                <Panel header="浏览记录" key="3">
-                                    浏览记录
-                                </Panel>
-                                <Panel header="我的工作" key="4">
-                                    我的工作
-                                </Panel>
-                            </Collapse>
+                        <div className="div-myBrowser">
+                            <div className="div-myBrowser-top">
+                                        <span style={{
+                                            fontWeight:900,
+                                            fontSize:1.5+"rem",
+                                            marginRight:6+"rem",
+                                            lineHeight:1.5+"rem"}}>
+                                            浏览记录
+                                        </span>
+                            </div>
+                            <BrowserList {...this.props}/>
                         </div>
+                        <div className="div-myJob">
+                            <div className="div-myJob-top">
+                                        <span style={{
+                                            fontWeight:900,
+                                            fontSize:1.5+"rem",
+                                            marginRight:6+"rem",
+                                            lineHeight:1.5+"rem"}}>
+                                            我的工作
+                                        </span>
+                            </div>
+                            <JobList {...this.props}/>
+                        </div>
+
                     </Col>
                 </Row>
             </div >
         )
-
     }
 }
 ;
 
-export default Task
+export default Index

@@ -8,7 +8,7 @@ import configureStore from './redux/configureStore';
 // 引入Ant-Design样式 & Animate.CSS样式
 import 'antd/dist/antd.min.css'
 
-import App from './components/App'
+import App from './containers/App'
 
 const store = configureStore();
 render(
